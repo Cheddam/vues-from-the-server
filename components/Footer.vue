@@ -1,5 +1,5 @@
 <template>
-  <footer>
-    Visit our website for more documentation : <a href="https://nuxtjs.org" target="_blank">nuxtjs.org</a>
+  <footer class="has-text-centered">
+    <a href="//garion.geek.nz">garion.geek.nz</a>
   </footer>
 </template>

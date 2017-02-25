@@ -1,6 +1,5 @@
 <template>
-  <section class="container">
-    <img src="../assets/img/logo.png" alt="Nuxt.js Logo" />
+  <section class="container has-text-centered">
     <h1 class="title">
       {{ error.statusCode }}
     </h1>
@@ -8,7 +7,7 @@
       {{ error.message }}
     </h2>
     <nuxt-link class="button" to="/" v-if="error.statusCode === 404">
-      Homepage
+      Home
     </nuxt-link>
   </section>
 </template>
