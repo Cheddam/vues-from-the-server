@@ -1,5 +1,7 @@
 <template>
-  <footer class="has-text-centered">
-    <a href="//garion.geek.nz">garion.geek.nz</a>
+  <footer class="footer has-text-centered">
+    <div class="container">
+      Powered by <a href="//nuxtjs.org">Nuxt</a>
+    </div>
   </footer>
 </template>

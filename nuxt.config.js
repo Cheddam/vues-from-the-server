@@ -40,5 +40,8 @@ module.exports = {
         })
       }
     }
+  },
+  env: {
+    baseApiUrl: process.env.BASE_API_URL || 'http://vfts-api.dev'
   }
 }
