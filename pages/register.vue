@@ -9,14 +9,38 @@
     <section class="section">
       <div class="columns">
         <form class="column is-half">
+
+          <p v-if="currentName"></p>
+
           <label for="name" class="label">Name</label>
+
           <p class="control">
-            <input type="text" class="input is-medium">
+            <input v-model="localNameValue" type="text" class="input is-medium" @keyup.enter.prevent="setName">
           </p>
 
-          <button class="button is-primary is-medium is-outlined">Register</button>
+          <button class="button is-primary is-medium is-outlined" @click.prevent="setName">{{ currentName ? 'Change Name' : 'Register' }}</button>
         </form>
       </div>
     </section>
   </div>
 </template>
+
+<script>
+  export default {
+    data () {
+      return {
+        localNameValue: ''
+      }
+    },
+
+    computed: {
+      currentName () { return this.$store.state.user.name }
+    },
+
+    methods: {
+      setName () {
+        this.$store.commit('user/setName', this.localNameValue)
+      }
+    }
+  }
+</script>

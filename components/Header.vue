@@ -14,8 +14,21 @@
       </span>
 
       <div class="nav-right nav-menu">
-        <nuxt-link class="nav-item is-tab" active-class="is-active" to="/register">Register</nuxt-link>
+        <nuxt-link class="nav-item is-tab" active-class="is-active" to="/register">
+          {{ username || 'Register' }}
+        </nuxt-link>
       </div>
     </div>
   </nav>
 </template>
+
+
+<script>
+
+  export default {
+    computed: {
+      username () { return this.$store.state.user.name }
+    }
+  }
+
+</script>

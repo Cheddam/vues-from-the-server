@@ -37,21 +37,21 @@
   import api from '~plugins/api'
 
   export default {
-    data (context) {
-      return api.get('/api/v1/board')
-        .then((res) => {
-          return {
-            boards: res.data
-          }
-        })
+    computed: {
+      boards () { return this.$store.state.cache.boards }
     },
+
     methods: {
       refreshBoards () {
         return api.get('/api/v1/board')
           .then((res) => {
-            this.boards = res.data
+            this.$store.commit('cache/refreshBoards', res.data)
           })
       }
+    },
+
+    created () {
+      this.refreshBoards()
     }
   }
 </script>
