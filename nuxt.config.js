@@ -27,6 +27,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    vendor: ['socket.io-client'],
     /*
     ** Run ESLINT on save
     */
@@ -42,6 +43,7 @@ module.exports = {
     }
   },
   env: {
-    baseApiUrl: process.env.BASE_API_URL || 'http://vfts-api.dev'
+    baseApiUrl: process.env.BASE_API_URL || 'http://vfts-api.dev',
+    HOST_URL: process.env.HOST_URL || 'http://localhost:3000'
   }
 }

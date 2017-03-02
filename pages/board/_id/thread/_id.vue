@@ -17,6 +17,8 @@
       </div>
     </section>
 
+    <p v-if="someoneTyping">Someone is typing...</p>
+
     <section class="section">
       <h4 class="title is-4">Reply</h4>
 
@@ -34,6 +36,7 @@
 
 <script>
   import api from '~plugins/api'
+  import socket from '~plugins/socket'
 
   // TODO: Shift this component to using state properly
   export default {
@@ -46,9 +49,13 @@
             board: res.data.Board,
             posts: res.data.Posts,
 
-            draftMessage: ''
+            draftMessage: '',
+            someoneTyping: false
           }
         })
+    },
+    watch: {
+      'draftMessage': 'updateTypingState'
     },
     methods: {
       refreshPosts () {
@@ -57,6 +64,7 @@
             this.posts = res.data.Posts
           })
       },
+
       addComment () {
         if (this.draftMessage === '') return
 
@@ -72,7 +80,27 @@
 
           this.posts.push(res.data)
         })
+      },
+
+      updateTypingState () {
+        if (this.draftMessage === '') {
+          socket.emit('stopped-typing', this.id)
+        } else {
+          socket.emit('started-typing', this.id)
+        }
       }
+    },
+    beforeMount () {
+      socket.on('someone-started-typing', (thread) => {
+        if (thread === this.id) {
+          this.someoneTyping = true
+        }
+      })
+      socket.on('someone-stopped-typing', (thread) => {
+        if (thread === this.id) {
+          this.someoneTyping = false
+        }
+      })
     }
   }
 </script>
