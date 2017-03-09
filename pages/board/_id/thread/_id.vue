@@ -22,6 +22,13 @@
     <section class="section">
       <h4 class="title is-4">Reply</h4>
 
+      <p v-if="$store.state.user.name == ''" class="control">
+        <input v-model="draftUsername"
+          class="input"
+          type="text"
+          placeholder="Your Name">
+      </p>
+
       <p class="control">
         <textarea v-model="draftMessage"
           class="textarea"
