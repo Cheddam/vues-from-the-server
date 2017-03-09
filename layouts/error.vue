@@ -1,14 +1,16 @@
 <template>
   <section class="container has-text-centered">
-    <h1 class="title">
-      {{ error.statusCode }}
-    </h1>
-    <h2 class="info">
-      {{ error.message }}
-    </h2>
-    <nuxt-link class="button" to="/" v-if="error.statusCode === 404">
-      Home
-    </nuxt-link>
+    <section class="section">
+      <h1 class="title">
+        {{ error.statusCode }}
+      </h1>
+      <h2 class="info">
+        {{ error.message }}
+      </h2>
+      <nuxt-link class="button" to="/" v-if="error.statusCode === 404">
+          Go Home
+      </nuxt-link>
+    </section>
   </section>
 </template>
 <script>

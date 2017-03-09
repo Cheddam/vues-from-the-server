@@ -2,6 +2,10 @@
 
 > a demo for nz.js(con)
 
+NOTE: This code is purely demonstrational, although you are free to take anything from it.
+
+It notably lacks any proper authentication layer, along with the ability to create threads.
+
 ## Build Setup
 
 ``` bash
