@@ -15,9 +15,9 @@
         <p>{{ post.Content }}</p>
         <p><em>&mdash;{{ post.Author }}</em></p>
       </div>
-    </section>
 
-    <p v-if="someoneTyping">Someone is typing...</p>
+      <p v-if="someoneTyping">Someone is typing...</p>
+    </section>
 
     <section class="section">
       <h4 class="title is-4">Reply</h4>
@@ -79,6 +79,8 @@
           this.draftMessage = ''
 
           this.posts.push(res.data)
+
+          socket.emit('new-reply', res.data)
         })
       },
 
@@ -91,6 +93,11 @@
       }
     },
     beforeMount () {
+      socket.on('new-reply', (reply) => {
+        if (parseInt(reply.Thread) === parseInt(this.id)) {
+          this.posts.push(reply)
+        }
+      })
       socket.on('someone-started-typing', (thread) => {
         if (thread === this.id) {
           this.someoneTyping = true

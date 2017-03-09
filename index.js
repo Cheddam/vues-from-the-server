@@ -26,6 +26,9 @@ server.listen(port, '0.0.0.0')
 
 // DOING IT LIIIIVE
 io.on('connection', (socket) => {
+  socket.on('new-reply', (post) => {
+    socket.broadcast.emit('new-reply', post)
+  })
   socket.on('started-typing', (thread) => {
     socket.broadcast.emit('someone-started-typing', thread)
   })
