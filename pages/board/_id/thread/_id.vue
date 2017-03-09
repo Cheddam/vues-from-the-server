@@ -56,6 +56,7 @@
             board: res.data.Board,
             posts: res.data.Posts,
 
+            draftUsername: '',
             draftMessage: '',
             someoneTyping: false
           }
@@ -79,7 +80,7 @@
           method: 'post',
           url: `/api/v1/thread/${this.id}/reply`,
           data: {
-            author: this.$store.state.user.name,
+            author: this.draftUsername || this.$store.state.user.name,
             message: this.draftMessage
           }
         }).then((res) => {
